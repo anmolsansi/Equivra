@@ -73,3 +73,86 @@ V1 accepts files manually in the exact supported profiles. It does not synchroni
 | Updated evidence changes a previously shared explanation | Create a new revision and preserve the original frozen workpaper |
 
 The intended value is a clearer, repeatable investigation. Time saved, repeat use, accuracy improvements and commercial demand are **not measured outcomes yet**.
+
+## Updated product workflow
+
+```mermaid
+flowchart TD
+    A[Open local app and enter current startup code] --> B[Select manifest and all three synthetic CSV files]
+    B --> C{Validate formats, scope and limits}
+    C -->|Invalid| D[Show source or field issue]
+    D --> B
+    C -->|Valid| E[Accept immutable bundle and queue investigation]
+    E --> F[Show durable run status]
+    F -->|Eligible processing failure| G[Explicit repeat-safe retry]
+    G --> F
+    F -->|Completed| H[Open finding and original evidence]
+    H --> I[Read what the evidence shows and the next evidence check]
+    I --> J[Save disposition against the displayed version]
+    J --> K[Explicitly freeze the selected run and review version]
+    K --> L[Download HTML or CSV from the frozen snapshot]
+    H --> M[Correct evidence with a new complete three-file bundle]
+    M --> B
+```
+
+- **Evidence guidance is deterministic.** A fixed lookup from the finding's reason code supplies the explanation and next check. No model call is required. Unknown reasons stay unresolved and offer source-inspection guidance.
+- **Review and freeze are separate actions.** A note does not change a financial fact or automatically approve a report. Stale saves/freezes require a deliberate refresh; review drafts are retained on conflict.
+- **Corrections preserve history.** A correction submits the complete bundle as a new revision. Repeating identical accepted content reuses its identity; old evidence and frozen reports remain unchanged.
+- **Exports preserve the frozen facts.** The new on-screen guidance does not add explanation copy to the frozen exports. Reports retain their existing facts, reason codes, evidence and unresolved labels.
+
+### A concrete example
+
+The synthetic processor records contain a **$100.00 payment**, a supplied **$3.20 fee** and a **$30.00 partial refund**. Their supplied net payout is **$66.80**. A bank deposit explicitly references that payout, while the supplied accounting export contains no refund entry.
+
+Equivra should show the supported $66.80 processor-to-bank relationship and a separate incomplete accounting-evidence finding. The reviewer can inspect the refund's source row and check for the corresponding entry or additional export coverage.
+
+Missing accounting evidence remains **unknown**, not zero and not proof an entry never existed. Adding the refund entry through a corrected complete bundle can change the new investigation; it cannot rewrite an earlier frozen report.
+
+## First-release boundaries
+
+- Local, synthetic-data demonstration; one modeled workspace/account and USD.
+- Three exact documented source profiles, with up to **10,000 data rows and 10 MiB per source file**. Reject exceeded limits without truncation.
+- Exact integer-cent arithmetic and explicit evidence references.
+- Findings use **supported, difference, incomplete, ambiguous or unsupported** states according to the source contract.
+- Temporary per-start access code, loopback host exposure and browser Host/Origin protections.
+- No real financial data, public signup, SaaS billing, live connectors, multiple currencies, AI drafting, accounting writes or universal import support in V1.
+
+Support for the stated workload must be demonstrated during implementation. No latency, throughput or production-readiness claim is established by this plan.
+
+## Planned architecture
+
+| Layer | Selected design |
+|---|---|
+| Browser | React and Vite; evidence-first review screens |
+| API and worker | One TypeScript backend codebase with separate process entry points; Node.js 24 and Fastify |
+| Persistence | PostgreSQL 18 with explicit SQL constraints, transactions and restricted runtime roles |
+| Background processing | PostgreSQL-backed pg-boss jobs with guarded publication and finite retries |
+| Sources and reports | Immutable original source files, versioned reviews, frozen snapshots and safe HTML/CSV rendering |
+| Verification | Node's built-in test runner, real PostgreSQL integration tests and Playwright browser journeys |
+
+These are planning choices. Dependency compatibility, queue behavior, resource limits and recovery still need executable proof. See the [architecture plan](docs/architecture.md) and [engineering review](docs/engineering-review.md).
+
+## Development status and build order
+
+The [development guide](development.md) contains **53 focused tickets**, exact prerequisites, owned files, implementation steps, test cases, recovery instructions and completion evidence. All implementation tickets are currently **Not completed**.
+
+The build proceeds through foundation → source contracts → storage/access/domain rules → jobs/import → review/snapshots → real backend integration → browser workflow → limits, restore and clean local setup.
+
+Start with **T1** and follow the [exact execution flow](development.md#flow). The backend convergence tickets **T47 and T48 run before T41–T46**, so browser acceptance depends on actual provider behavior. Written contracts and mock examples do not count as completed integration.
+
+There is no runnable application or verified installation command yet. The foundation tickets establish those commands; the release tickets prove the complete local walkthrough. GitHub publication of these documents is separate from application implementation, CI acceptance or deployment.
+
+## Project documents
+
+| Document | Read it for |
+|---|---|
+| [Development guide](development.md) | All 53 small tickets, execution order and acceptance gates |
+| [Product requirements](docs/PRD.md) | Approved goals, users, scope and success criteria |
+| [Approved workflow design](docs/designs/equivra-payments-workbench.md) | User journey and design decisions |
+| [Architecture plan](docs/architecture.md) | Data, runtime, access, job and report boundaries |
+| [Contract registry](docs/contracts/registry.md) | Exact source/API/provider handoffs |
+| [Synthetic scenarios](docs/demo-scenarios.md) | Financial examples, ambiguity, replay and concurrency expectations |
+| [Orchestration plan](docs/orchestration.md) | Parent packets, dependencies and integration checkpoints |
+| [Repository context](docs/repo_context.md) | Baseline and verified versus proposed commands |
+
+The near-term goal is a defensible portfolio demonstration. Business validation runs alongside it; real-data pilots, hosting and commercial operation remain separate future decisions.
