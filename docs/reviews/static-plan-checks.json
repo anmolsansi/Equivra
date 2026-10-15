@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-15",
+  "kind": "documentation-static-validation",
+  "status": "passed",
+  "contracts": 10,
+  "contract_fields": 20,
+  "tasks": 12,
+  "edges": 66,
+  "merge_nodes": 16,
+  "checkpoints": 3,
+  "checks": [
+    "contract/task copy agreement",
+    "provider-consumer edge completeness",
+    "acyclic merge graph",
+    "edge start/merge/runtime/verification metadata",
+    "same-wave file disjointness",
+    "packet required sections and <=3-day sizing",
+    "local Markdown link existence",
+    "sample exact decimal amounts",
+    "terminal report format"
+  ],
+  "not_run": [
+    "application build or tests",
+    "selected runtime/Docker/provider conformance",
+    "browser journey",
+    "workload benchmark",
+    "paired restore"
+  ]
+}

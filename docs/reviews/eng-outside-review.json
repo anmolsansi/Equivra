@@ -1,0 +1,10 @@
+{
+  "phase": "eng-plan-review",
+  "host": "codex",
+  "configured_provider": "codex",
+  "outside_status": "unavailable",
+  "preflight": "under_codex",
+  "process_started": false,
+  "native_fallback": "unavailable: declared Plan type, TaskOutput and TaskStop not available",
+  "findings": null
+}
