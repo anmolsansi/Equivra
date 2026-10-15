@@ -1,0 +1,1377 @@
+{
+  "version": 1,
+  "status": "complete written packets; execution readiness blocked at G0",
+  "tasks": [
+    {
+      "id": "TASK-01",
+      "title": "Establish pinned local runtime, shared wire fixtures and command gate",
+      "wave": 0,
+      "lane": "Foundation",
+      "days": 1.5,
+      "files": [
+        "scripts/init-local.mjs",
+        ".env.example",
+        "package.json",
+        "package-lock.json",
+        "tsconfig.server.json",
+        ".gitignore",
+        "Dockerfile",
+        "compose.yaml",
+        "web/package.json",
+        "web/tsconfig.json",
+        "web/vite.config.ts",
+        "web/index.html",
+        "web/src/main.tsx",
+        "web/src/App.tsx",
+        "server/main.ts",
+        "server/app.ts",
+        "server/config.ts",
+        "server/worker.ts",
+        "shared/api.ts",
+        "shared/canonical.ts",
+        "tests/unit/canonical.test.ts",
+        "tests/support/mock-api.ts",
+        "tests/support/job-contract.ts",
+        "tests/unit/config.test.ts",
+        "docs/repo_context.md"
+      ],
+      "consumes": [],
+      "produces": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "steps": [
+        "Pin Node24/PG18 application/test container baseline and exact compatible dependency versions/lockfile. Use only the fixed host-native/Compose binding profiles: host loopback and container-internal listener with127.0.0.1-only published port. No global installs, remote DB, paid API or framework replacement.",
+        "Create ESM TypeScript build and exact C-FOUNDATION scripts; missing test families must not silently pass. Minimal API/worker/UI entries only.",
+        "Freeze wire types and mock API/job shapes from contract examples; hashes must match exact source bytes. Mock results are synthetic fixtures, not application acceptance.",
+        "Implement local configuration/test-database guards and record actual baseline, Docker daemon result, script definitions and command-family readiness in repo_context. G0 fails on missing compatibility/evidence."
+      ],
+      "tests": [
+        "Unit config: reject remote DB/public host publication and unsafe test target; accept fixed Compose/loopback config without logging credentials.",
+        "Build/typecheck under Node24; inspect exact scripts and run available foundation checks; absent future suites remain explicitly blocked.",
+        "Contract fixtures: wire envelopes, UUID/money-string/null shapes agree with C-API."
+      ],
+      "criteria": [
+        "Node24 minimal app/web build with pinned lockfile is observed, not inferred from host Node25.",
+        "Declared commands exist and each execution/readiness outcome is recorded truthfully.",
+        "Shared typed/mock handoffs permit consumers to start without provider internals.",
+        "No financial implementation, public deployment or data reset is included."
+      ],
+      "rollback": "Revert only foundation-owned files; preserve docs and unrelated runtime state. Never reset a DB volume to hide failure.",
+      "invariants": [
+        "INV-01",
+        "INV-08",
+        "INV-09"
+      ]
+    },
+    {
+      "id": "TASK-02",
+      "title": "Normalize exact source profiles and freeze scenario fixtures",
+      "wave": 1,
+      "lane": "Sources",
+      "days": 1.5,
+      "files": [
+        "shared/source.ts",
+        "shared/money.ts",
+        "tests/unit/source.test.ts",
+        "tests/unit/money.test.ts",
+        "tests/fixtures/scenarios.json"
+      ],
+      "consumes": [
+        "C-FOUNDATION"
+      ],
+      "produces": [
+        "C-SOURCE"
+      ],
+      "steps": [
+        "Implement exact manifest/header/encoding/date/identity/byte/row/field rules in C-SOURCE. No heuristic column mapping.",
+        "Parse decimal amounts to signed integer-cent strings using BigInt arithmetic, preserving raw values and file/record lineage.",
+        "Freeze valid/invalid S1-S8 fixtures including corrected whole bundle, header-only scope, duplicate IDs, unknown category, dispute identity limits and boundary sizes."
+      ],
+      "tests": [
+        "100.00->10000, -30.00->-3000, supplied9680 net and6680 payout subtotal; reject exponent/excess precision/bound/currency.",
+        "Table-driven BOM/multiline/quoting/duplicate header/UTF8/NUL/empty/date/ID/limit cases, with exact-bound and one-over assertions.",
+        "Equal amounts with distinct external IDs survive; header-only is zero observed activity, not real completeness."
+      ],
+      "criteria": [
+        "Documented example normalizes with exact amounts and stable raw row refs.",
+        "Every invalid source yields bounded named diagnostic and no runnable partial bundle.",
+        "Corrected books contains supplied -3000 and no invented fee/treatment.",
+        "Consumer fixture/schema conformance is frozen without private parser knowledge."
+      ],
+      "rollback": "Version profile and update all consumers/fixtures for changes; never reinterpret accepted old source bytes silently.",
+      "invariants": [
+        "INV-02",
+        "INV-03",
+        "INV-04",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-03",
+      "title": "Create revision-owned schema, role grants and migration boundary",
+      "wave": 1,
+      "lane": "Storage",
+      "days": 1.5,
+      "files": [
+        "db/001_initial.sql",
+        "db/migrate.ts",
+        "server/db.ts",
+        "tests/support/database.ts",
+        "tests/integration/storage.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE"
+      ],
+      "produces": [
+        "C-DB"
+      ],
+      "steps": [
+        "Implement C-DB tables/constraints/indexes/RESTRICT history and API/worker/migration role grants exactly. No ORM or destructive automatic reset.",
+        "Provide parameterized node-postgres transaction helper and coordinated schema/queue installation before normal app startup.",
+        "Provide disposable equivra_test_<hex> DB fixtures with safety guard; seed frozen source/run/evidence; run role and rollback checks."
+      ],
+      "tests": [
+        "Real PG migration apply/recheck, unique/FK/check failures and complete rollback.",
+        "Runtime roles cannot UPDATE/DELETE immutable facts; worker cannot INSERT review/snapshot or change review aggregate.",
+        "Test DB helper refuses primary/remote targets; source/run relations cannot cross owning revision."
+      ],
+      "criteria": [
+        "Versioned schema/grants match C-DB and local runtime can connect with the intended roles.",
+        "Constraints reject invalid identity/ownership and immutable-history mutation.",
+        "Isolated DB fixture and transaction handoff usable by consumers.",
+        "Actual migration/integration evidence recorded; no missing Docker/DB command marked pass."
+      ],
+      "rollback": "Stop API/worker; preserve paired DB+source archive; restore compatible schema/application pair instead of deleting history.",
+      "invariants": [
+        "INV-01",
+        "INV-03",
+        "INV-04",
+        "INV-05",
+        "INV-06"
+      ]
+    },
+    {
+      "id": "TASK-04",
+      "title": "Enforce current-start local access and browser boundary",
+      "wave": 1,
+      "lane": "Access",
+      "days": 0.75,
+      "files": [
+        "server/access.ts",
+        "server/app.ts",
+        "tests/unit/access.test.ts",
+        "tests/integration/access.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "produces": [
+        "C-ACCESS"
+      ],
+      "steps": [
+        "Generate per-start code with crypto and bounded constant-time Bearer comparison. Intentional terminal display only, structured logs redacted.",
+        "Install protected /api/v1/download guard globally; shell/minimal health reveal no app data.",
+        "Enforce loopback/exact Host/mutating Origin/cross-site checks and declared bounded failed-code throttle. Use normal Fastify plugin/config wiring, no test bypass."
+      ],
+      "tests": [
+        "Current code allowed; missing/wrong/previous-start401; hostile Host/Origin/null/cross-site403 even with code.",
+        "Content/size checks reject before handler; failed-code threshold429.",
+        "Captured JSON/errors/structured logs/URLs do not contain code; browser memory/reload assertions at INT-03."
+      ],
+      "criteria": [
+        "All data/actions/downloads guarded before domain work.",
+        "Restart revokes old access, health/static cannot disclose it.",
+        "Safe error mapping and no writes on denied request."
+      ],
+      "rollback": "Stop local API to revoke code; keep data intact; never fallback to an unguarded mode.",
+      "invariants": [
+        "INV-01",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-05",
+      "title": "Accept immutable whole bundles and preview validated sources",
+      "wave": 2,
+      "lane": "Ingestion",
+      "days": 2,
+      "files": [
+        "server/imports.ts",
+        "tests/integration/imports.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-DB",
+        "C-JOBS",
+        "C-ACCESS",
+        "C-API"
+      ],
+      "produces": [
+        "C-IMPORT"
+      ],
+      "steps": [
+        "Implement exact multipart/manifest and GET bundle preview(max25 rows/source). All three kinds required.",
+        "Stage/hash/validate bounded input into generated server paths; durable immutable bytes precede accepting DB transaction.",
+        "Atomically insert complete revision/files/rows/run and enqueue via same-client C-JOBS adapter. Exact content replay returns existing identity; changed bytes/manifest new revision.",
+        "Cleanup only positively unreferenced abandoned staging; never delete accepted sources after a lost/failed response."
+      ],
+      "tests": [
+        "Sample202 and exact replay200 stable bundle/run; corrected complete bundle preserves old facts.",
+        "Disk-before-commit and DB-after-file-finalization failures leave no acknowledged dangling revision; cleanup protects referenced bytes.",
+        "Concurrent replay both orders one identity/job; missing/malformed/excess source rejects rather than truncates."
+      ],
+      "criteria": [
+        "Every accepted bundle pins exactly three immutable sources and durable run/job.",
+        "Preview hashes/counts/raw fields agree with original bytes.",
+        "Replays do not duplicate economic results; corrections never overwrite old revision."
+      ],
+      "rollback": "Stop/disable endpoint; retain all referenced source revisions; only verified orphan staging may be removed.",
+      "invariants": [
+        "INV-02",
+        "INV-03",
+        "INV-04",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-06",
+      "title": "Investigate supported and unresolved financial evidence deterministically",
+      "wave": 2,
+      "lane": "Domain",
+      "days": 2,
+      "files": [
+        "shared/investigate.ts",
+        "tests/unit/investigate.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE"
+      ],
+      "produces": [
+        "C-DOMAIN"
+      ],
+      "steps": [
+        "Implement seven frozen C-DOMAIN rules using bounded indexed maps and exact integers, no I/O or model.",
+        "Stable case keys/order and references; amount alone never identity. Keep missing/ambiguous/unsupported separate from computation errors.",
+        "Preserve scope/date/refund/dispute limits and unlinked observations; no invented fees, wins, losses or accounting advice."
+      ],
+      "tests": [
+        "S1 subtotal6680/missing book refund/corrected delta0; missing observed/delta is null, not zero.",
+        "S2 exact same dispute identity only, principal and supplied fees distinct; S3 cross-period evidence; S4 reversed source order remains ambiguous.",
+        "Unknown categories and extra/unlinked rows explicit; equal amounts/different IDs preserved; all facts resolve to source or exact calculation."
+      ],
+      "criteria": [
+        "All normalized scenario facts match expected outcomes with evidence refs.",
+        "Same input/rule yields deterministic financial facts and case keys.",
+        "No uncertainty becomes supported because of amount equality or reviewer disposition.",
+        "Worker/report consumers implement from published shape/fixture only."
+      ],
+      "rollback": "Changed rules need new rule/run version and consumer fixtures; never mutate historical output.",
+      "invariants": [
+        "INV-02",
+        "INV-04",
+        "INV-07"
+      ]
+    },
+    {
+      "id": "TASK-07",
+      "title": "Execute transactional jobs and eligible retries with recovery proof",
+      "wave": 3,
+      "lane": "Worker",
+      "days": 2,
+      "files": [
+        "server/jobs.ts",
+        "server/worker.ts",
+        "tests/integration/jobs.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-DB",
+        "C-DOMAIN",
+        "C-API",
+        "C-ACCESS"
+      ],
+      "produces": [
+        "C-JOBS"
+      ],
+      "steps": [
+        "Implement pinned pg-boss transaction adapter/options and worker using its supplied transaction for every result write/completion. No direct queue-table update.",
+        "Guard current run/job identity and unique case publication; source is pinned revision. Queue state plus application outcome drives API status.",
+        "Implement eligible failed-run retry route with expected_job_id, same run/bundle/rules, fresh job and idempotency result in one transaction.",
+        "Persist sanitized terminal failure before queue cleanup; prove pending/failed visibility cannot vanish. Stop for architect if pinned API cannot enforce contract."
+      ],
+      "tests": [
+        "Real PG enqueue rollback, crash before/after publication, stale/lost claim in both orders and old revision completion after correction.",
+        "Finite transient retries/exhaustion visible; invalid/integrity/active/completed run not manually retried.",
+        "Exact retry replay returns original; stale job/key body409; no duplicate result."
+      ],
+      "criteria": [
+        "No acknowledged run without durable queue job.",
+        "Crash/retry yields exactly one owning committed result/case set.",
+        "Stale worker cannot overwrite different revision/current job.",
+        "Durable queued/running/retrying/failed/completed and eligible retry proven on real PG."
+      ],
+      "rollback": "Stop worker, preserve source/results/snapshots; retry only eligible owned failure via declared route/library; restore compatible archive for invariant violation.",
+      "invariants": [
+        "INV-03",
+        "INV-04",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-08",
+      "title": "Save auditable review decisions with expected versions",
+      "wave": 2,
+      "lane": "Review",
+      "days": 1.5,
+      "files": [
+        "server/reviews.ts",
+        "tests/integration/reviews.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-DB",
+        "C-ACCESS",
+        "C-API"
+      ],
+      "produces": [
+        "C-REVIEW"
+      ],
+      "steps": [
+        "Implement bounded case/evidence reads and exact decision endpoint; validate references within owning run.",
+        "Replay lookup before stale checks; lock run first, compare case version, append decision and increment run aggregate/audit/result atomically.",
+        "Save changes review only, never source facts, support status or implicit report freeze."
+      ],
+      "tests": [
+        "Valid/invalid note/disposition; missing/cross-revision references; exact lost-response replay and mismatched-key409.",
+        "Two equal-version writers both orders yield one successor and one conflict; aggregate and audit correct.",
+        "Read latest decision or null/version0; no raw note/code in operational logs."
+      ],
+      "criteria": [
+        "No stale overwrite and accurate returned case/aggregate versions.",
+        "Reviewer decision never changes financial facts or existing snapshot.",
+        "C-REVIEW handoff gives report consumer all version/error semantics."
+      ],
+      "rollback": "Revert handler with app stopped; preserve append-only decisions/audit and all source evidence.",
+      "invariants": [
+        "INV-01",
+        "INV-05",
+        "INV-07",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-09",
+      "title": "Freeze complete immutable snapshots and export inert reports",
+      "wave": 3,
+      "lane": "Reports",
+      "days": 2,
+      "files": [
+        "server/reports.ts",
+        "shared/report.ts",
+        "tests/unit/report.test.ts",
+        "tests/integration/snapshots.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-DB",
+        "C-DOMAIN",
+        "C-REVIEW",
+        "C-ACCESS",
+        "C-API"
+      ],
+      "produces": [
+        "C-REPORT"
+      ],
+      "steps": [
+        "Freeze expected aggregate under same run lock as review; canonical sorted payload/hash includes all published cases and current selected decisions/coverage.",
+        "Render snapshot payload only, never latest joins; safe fixed filename/content types and HTML/CSV encoding.",
+        "Use snapshot.json only as wire illustration, not full scenario expected case inventory; actual snapshot must include every run case."
+      ],
+      "tests": [
+        "Save-before-freeze old version409; freeze-before-save immutable old report plus new draft.",
+        "Corrected whole bundle, later reviews and repeat rendering preserve old facts/evidence; failed render keeps snapshot.",
+        "Actual download/DOM markup, quotes/newlines and whitespace formula prefixes inert; typed numeric money deliberately formatted."
+      ],
+      "criteria": [
+        "Save alone never freezes; freeze atomic and stale-safe.",
+        "All published cases and unresolved labels included, no illustrative subset.",
+        "Repeated/restore rendering has same financial facts/source refs/decisions.",
+        "Unsafe text cannot execute; source raw values retained separately."
+      ],
+      "rollback": "Preserve snapshots; renderer/profile version change needs compatibility proof; restore paired archive if invariants fail.",
+      "invariants": [
+        "INV-04",
+        "INV-05",
+        "INV-06",
+        "INV-07",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-10",
+      "title": "Build the complete accessible local React investigation journey",
+      "wave": 2,
+      "lane": "Web",
+      "days": 2.5,
+      "files": [
+        "web/src/App.tsx",
+        "web/src/api.ts",
+        "web/src/styles.css",
+        "tests/e2e/workbench.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-ACCESS",
+        "C-API",
+        "C-REVIEW",
+        "C-REPORT"
+      ],
+      "produces": [],
+      "steps": [
+        "Access, three-source upload/preview, durable status/cases, evidence/review and freeze/export views; native React/fetch, no generic KPI feature.",
+        "Code in memory only; refresh/new tab entry;401 clears access.409 preserves draft and asks deliberate reload instead of auto-resubmission.",
+        "Explicit loading/empty/error/success/partial states, semantic labels/tables/focus/status, readable long refs and stacked narrow-screen panels.",
+        "Start from frozen mock fixtures after G0; runtime merge waits INT-02 conformance, not mock-only success."
+      ],
+      "tests": [
+        "Node-driven Playwright full real API/worker/PG import->refund evidence->review->freeze->download.",
+        "Invalid/current/previous access and no persistent secret/URL; source errors, queued refresh, stale saves/freezes, eligible retry, zero-case coverage.",
+        "Keyboard/focus/narrow-screen amounts/references usable and source strings inert in actual DOM/download."
+      ],
+      "criteria": [
+        "Critical journey passes real providers and frozen wire protocol.",
+        "All declared states explicit/actionable; uncertainty and review disposition remain separate.",
+        "No token in storage/URL/log; conflicts keep draft.",
+        "Frozen output shows correct evidence and remaining unknowns."
+      ],
+      "rollback": "Revert UI only against compatible API; preserve sources/reviews/snapshots, no server workaround hidden in frontend.",
+      "invariants": [
+        "INV-01",
+        "INV-05",
+        "INV-06",
+        "INV-07",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-11",
+      "title": "Assemble providers and prove API/component conformance",
+      "wave": 4,
+      "lane": "API convergence",
+      "days": 1.5,
+      "files": [
+        "server/app.ts",
+        "server/main.ts",
+        "tests/integration/api-contract.test.ts",
+        "tests/integration/workbench.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-DB",
+        "C-DOMAIN",
+        "C-JOBS",
+        "C-ACCESS",
+        "C-API",
+        "C-REVIEW",
+        "C-REPORT",
+        "C-IMPORT"
+      ],
+      "produces": [],
+      "steps": [
+        "Serially mount actual providers after their owners; preserve C-API shape and access guard order.",
+        "Run INT-01 data/jobs and INT-02 API/review/report scenarios against real PG and exact source fixtures.",
+        "Propagate correlation and validate redaction/ownership across actual HTTP/job boundaries; provider owner fixes contract mismatch, not consumer reinterpretation."
+      ],
+      "tests": [
+        "All method/body/query/status/error/envelope/money-string/null response conformance.",
+        "Accepted upload+job+publication then review/freeze both completion orders; cross-revision IDs rejected.",
+        "Invalid/old access, Host/Origin and source faults cannot reach mutation/complete success; logs sanitized."
+      ],
+      "criteria": [
+        "INT-01 and INT-02 pass real providers, not mocks alone.",
+        "Consumer fixtures agree with runtime wire/error shape.",
+        "No missing source/version/access/report boundary or duplicate publication."
+      ],
+      "rollback": "Stop API/worker; preserve DB/files and revert compatible assembly; never reset to manufacture green integration.",
+      "invariants": [
+        "INV-01",
+        "INV-02",
+        "INV-03",
+        "INV-04",
+        "INV-05",
+        "INV-06",
+        "INV-07",
+        "INV-08"
+      ]
+    },
+    {
+      "id": "TASK-12",
+      "title": "Verify clean setup, restore, input envelope and local release evidence",
+      "wave": 5,
+      "lane": "Local release",
+      "days": 2,
+      "files": [
+        "docs/runbook.md",
+        "docs/demo.md",
+        "README.md",
+        ".github/workflows/ci.yml",
+        "tests/integration/recovery.test.ts",
+        "tests/integration/limits.test.ts"
+      ],
+      "consumes": [
+        "C-FOUNDATION",
+        "C-SOURCE",
+        "C-DB",
+        "C-DOMAIN",
+        "C-JOBS",
+        "C-ACCESS",
+        "C-API",
+        "C-REVIEW",
+        "C-REPORT",
+        "C-IMPORT"
+      ],
+      "produces": [],
+      "steps": [
+        "Document exact observed setup/migrate/start/access/demo/stop/restore; commands cannot be advertised passing from their specification alone.",
+        "Restore paired DB+raw source archive into disposable target; reproduce prior frozen workpaper after corrections/reviews.",
+        "Exercise10000-row and10MiB profile boundaries and one-over; record actual hardware/dataset/time/memory with no invented SLA.",
+        "CI uses pinned Node24 and disposable local PG/synthetic fixtures; invokes behavior-owned suites. Complete INT-03 and RELEASE-GATE without hosting, publication or real-data steps."
+      ],
+      "tests": [
+        "Integration: paired restore reproduces frozen facts/refs; mismatched archive/integrity rejected.",
+        "Integration: each accepted/exceeded input bound yields honest accepted/rejected result, no truncation or partial run.",
+        "Clean environment: browser journey/repeat/interruption/old-code denial and no raw source/code in diagnostics; all mandatory check outcomes recorded."
+      ],
+      "criteria": [
+        "INT-03 and every release check have actual evidence.",
+        "Runbook restores without deleting history; recovery limitations measured/stated.",
+        "Build/typecheck/unit/integration/e2e/CI outcomes explicit; missing/failed checks block release.",
+        "README/demo plainly synthetic, no production/revenue/savings/universal-format claims."
+      ],
+      "rollback": "Retain prior compatible version/archive, stop on invariant/security failure, do not publish or delete data to hide it.",
+      "invariants": [
+        "INV-01",
+        "INV-02",
+        "INV-03",
+        "INV-04",
+        "INV-05",
+        "INV-06",
+        "INV-07",
+        "INV-08",
+        "INV-09"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-02",
+      "contract_ids": [
+        "C-FOUNDATION"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-03",
+      "contract_ids": [
+        "C-FOUNDATION"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-04",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-05",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-06",
+      "contract_ids": [
+        "C-FOUNDATION"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-07",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-08",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-10",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-01",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-FOUNDATION",
+        "C-API"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-FOUNDATION,C-API",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-03",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-05",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-06",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-07",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-10",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-SOURCE"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-SOURCE",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-05",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-07",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-08",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-DB"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DB",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-05",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-07",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-08",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-10",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-ACCESS"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-ACCESS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-06",
+      "to_task": "TASK-07",
+      "contract_ids": [
+        "C-DOMAIN"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DOMAIN",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-06",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-DOMAIN"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DOMAIN",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-06",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-DOMAIN"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DOMAIN",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-06",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-DOMAIN"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-DOMAIN",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-07",
+      "to_task": "TASK-05",
+      "contract_ids": [
+        "C-JOBS"
+      ],
+      "start_dependency": "G0 + frozen enqueue/status mock; consumer may start before provider implementation",
+      "merge_dependency": "Provider executable conformance for C-JOBS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-07",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-JOBS"
+      ],
+      "start_dependency": "G0 + frozen enqueue/status mock; consumer may start before provider implementation",
+      "merge_dependency": "Provider executable conformance for C-JOBS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-07",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-JOBS"
+      ],
+      "start_dependency": "G0 + frozen enqueue/status mock; consumer may start before provider implementation",
+      "merge_dependency": "Provider executable conformance for C-JOBS",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-08",
+      "to_task": "TASK-09",
+      "contract_ids": [
+        "C-REVIEW"
+      ],
+      "start_dependency": "G0 + frozen review shape/mock; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REVIEW",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-08",
+      "to_task": "TASK-10",
+      "contract_ids": [
+        "C-REVIEW"
+      ],
+      "start_dependency": "G0 + frozen review shape/mock; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REVIEW",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-08",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-REVIEW"
+      ],
+      "start_dependency": "G0 + frozen review shape/mock; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REVIEW",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-08",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-REVIEW"
+      ],
+      "start_dependency": "G0 + frozen review shape/mock; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REVIEW",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-09",
+      "to_task": "TASK-10",
+      "contract_ids": [
+        "C-REPORT"
+      ],
+      "start_dependency": "G0 + frozen snapshot/export fixture; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REPORT",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-09",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-REPORT"
+      ],
+      "start_dependency": "G0 + frozen snapshot/export fixture; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REPORT",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-09",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-REPORT"
+      ],
+      "start_dependency": "G0 + frozen snapshot/export fixture; provider implementation needed for merge",
+      "merge_dependency": "Provider executable conformance for C-REPORT",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-05",
+      "to_task": "TASK-11",
+      "contract_ids": [
+        "C-IMPORT"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-IMPORT",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-05",
+      "to_task": "TASK-12",
+      "contract_ids": [
+        "C-IMPORT"
+      ],
+      "start_dependency": "G0 + design-frozen shapes and fixtures",
+      "merge_dependency": "Provider executable conformance for C-IMPORT",
+      "runtime_dependency": "Matching local provider/schema and pinned source/run identities",
+      "verification": "Required contract/behavior tests in consumer packet under verified G0 commands"
+    },
+    {
+      "from_task": "TASK-02",
+      "to_task": "INT-01",
+      "contract_ids": [],
+      "gate": "INT-01",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real provider/PG fixtures agree, no duplicate/partial published result.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts."
+    },
+    {
+      "from_task": "TASK-03",
+      "to_task": "INT-01",
+      "contract_ids": [],
+      "gate": "INT-01",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real provider/PG fixtures agree, no duplicate/partial published result.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts."
+    },
+    {
+      "from_task": "TASK-05",
+      "to_task": "INT-01",
+      "contract_ids": [],
+      "gate": "INT-01",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real provider/PG fixtures agree, no duplicate/partial published result.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts."
+    },
+    {
+      "from_task": "TASK-06",
+      "to_task": "INT-01",
+      "contract_ids": [],
+      "gate": "INT-01",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real provider/PG fixtures agree, no duplicate/partial published result.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts."
+    },
+    {
+      "from_task": "TASK-07",
+      "to_task": "INT-01",
+      "contract_ids": [],
+      "gate": "INT-01",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real provider/PG fixtures agree, no duplicate/partial published result.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts."
+    },
+    {
+      "from_task": "INT-01",
+      "to_task": "INT-02",
+      "contract_ids": [],
+      "gate": "INT-02",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real assembled API conformance passes, no mocked-provider-only credit.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics."
+    },
+    {
+      "from_task": "TASK-04",
+      "to_task": "INT-02",
+      "contract_ids": [],
+      "gate": "INT-02",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real assembled API conformance passes, no mocked-provider-only credit.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics."
+    },
+    {
+      "from_task": "TASK-08",
+      "to_task": "INT-02",
+      "contract_ids": [],
+      "gate": "INT-02",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real assembled API conformance passes, no mocked-provider-only credit.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics."
+    },
+    {
+      "from_task": "TASK-09",
+      "to_task": "INT-02",
+      "contract_ids": [],
+      "gate": "INT-02",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real assembled API conformance passes, no mocked-provider-only credit.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics."
+    },
+    {
+      "from_task": "TASK-11",
+      "to_task": "INT-02",
+      "contract_ids": [],
+      "gate": "INT-02",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real assembled API conformance passes, no mocked-provider-only credit.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics."
+    },
+    {
+      "from_task": "INT-02",
+      "to_task": "INT-03",
+      "contract_ids": [],
+      "gate": "INT-03",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real local API/worker/PG browser journey and download facts pass.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Actual browser import/evidence/review/freeze/download; reload/code/stale/error and keyboard/narrow states."
+    },
+    {
+      "from_task": "TASK-10",
+      "to_task": "INT-03",
+      "contract_ids": [],
+      "gate": "INT-03",
+      "start_dependency": "Named upstream handoffs available",
+      "merge_dependency": "Real local API/worker/PG browser journey and download facts pass.",
+      "runtime_dependency": "Real local provider composition",
+      "verification": "Actual browser import/evidence/review/freeze/download; reload/code/stale/error and keyboard/narrow states."
+    },
+    {
+      "from_task": "INT-02",
+      "to_task": "TASK-10",
+      "contract_ids": [],
+      "gate": "real API conformance before web merge",
+      "start_dependency": "G0 + fixed API/access/review/report fixtures permit W2 start",
+      "merge_dependency": "INT-02 actual API provider conformance passed",
+      "runtime_dependency": "Real local API/worker/PG",
+      "verification": "C-API conformance and UI provider boundary"
+    },
+    {
+      "from_task": "INT-03",
+      "to_task": "TASK-12",
+      "contract_ids": [],
+      "gate": "browser convergence before release evidence",
+      "start_dependency": "Release docs may draft; actual browser checks need INT-03",
+      "merge_dependency": "INT-03 completed real browser journey",
+      "runtime_dependency": "Real local app",
+      "verification": "Local release checks"
+    },
+    {
+      "from_task": "INT-01",
+      "to_task": "RELEASE-GATE",
+      "contract_ids": [],
+      "gate": "local release",
+      "start_dependency": "All checkpoint/evidence prerequisites",
+      "merge_dependency": "Mandatory checks have actual passing evidence",
+      "runtime_dependency": "Compatible app/schema/source archive",
+      "verification": "Build/typecheck/unit/integration/browser, access/limits/recovery/output/redacted logs/runbook; no hosting"
+    },
+    {
+      "from_task": "INT-02",
+      "to_task": "RELEASE-GATE",
+      "contract_ids": [],
+      "gate": "local release",
+      "start_dependency": "All checkpoint/evidence prerequisites",
+      "merge_dependency": "Mandatory checks have actual passing evidence",
+      "runtime_dependency": "Compatible app/schema/source archive",
+      "verification": "Build/typecheck/unit/integration/browser, access/limits/recovery/output/redacted logs/runbook; no hosting"
+    },
+    {
+      "from_task": "INT-03",
+      "to_task": "RELEASE-GATE",
+      "contract_ids": [],
+      "gate": "local release",
+      "start_dependency": "All checkpoint/evidence prerequisites",
+      "merge_dependency": "Mandatory checks have actual passing evidence",
+      "runtime_dependency": "Compatible app/schema/source archive",
+      "verification": "Build/typecheck/unit/integration/browser, access/limits/recovery/output/redacted logs/runbook; no hosting"
+    },
+    {
+      "from_task": "TASK-12",
+      "to_task": "RELEASE-GATE",
+      "contract_ids": [],
+      "gate": "local release",
+      "start_dependency": "All checkpoint/evidence prerequisites",
+      "merge_dependency": "Mandatory checks have actual passing evidence",
+      "runtime_dependency": "Compatible app/schema/source archive",
+      "verification": "Build/typecheck/unit/integration/browser, access/limits/recovery/output/redacted logs/runbook; no hosting"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "INT-01",
+      "upstream": [
+        "TASK-02",
+        "TASK-03",
+        "TASK-05",
+        "TASK-06",
+        "TASK-07"
+      ],
+      "contracts": [
+        "C-SOURCE",
+        "C-DB",
+        "C-DOMAIN",
+        "C-JOBS",
+        "C-IMPORT"
+      ],
+      "owner": "TASK-11",
+      "scenarios": "Three sources/revision/replay/correction; enqueue rollback and before/after-commit worker interruption; stale owner; exact supported/unknown facts.",
+      "exit": "Real provider/PG fixtures agree, no duplicate/partial published result."
+    },
+    {
+      "id": "INT-02",
+      "upstream": [
+        "INT-01",
+        "TASK-04",
+        "TASK-08",
+        "TASK-09",
+        "TASK-11"
+      ],
+      "contracts": [
+        "C-ACCESS",
+        "C-API",
+        "C-REVIEW",
+        "C-REPORT"
+      ],
+      "owner": "TASK-11",
+      "scenarios": "Full API wire/errors and access/Host/Origin; cross-revision denial; both review/freeze orders; immutable safe report and diagnostics.",
+      "exit": "Real assembled API conformance passes, no mocked-provider-only credit."
+    },
+    {
+      "id": "INT-03",
+      "upstream": [
+        "INT-02",
+        "TASK-10"
+      ],
+      "contracts": [
+        "C-API",
+        "C-REVIEW",
+        "C-REPORT"
+      ],
+      "owner": "TASK-12",
+      "scenarios": "Actual browser import/evidence/review/freeze/download; reload/code/stale/error and keyboard/narrow states.",
+      "exit": "Real local API/worker/PG browser journey and download facts pass."
+    }
+  ],
+  "invariants": {
+    "INV-01": "Only the current-start code may access application data/actions; loopback/Host/Origin enforced; worker cannot insert reviewer decisions/snapshots.",
+    "INV-02": "All monetary arithmetic uses exact integer cents, currency usd, source values preserved; gross-fee=net verified; no guessed fees.",
+    "INV-03": "An accepted input pins a complete three-file immutable revision and durable run/job; no acknowledged partial or dangling bundle.",
+    "INV-04": "Source event identities remain distinct; duplicate submission/recovery creates one owning financial result; corrections and stale jobs cannot overwrite other revisions.",
+    "INV-05": "Review and freeze serialize against the same owning run; expected versions reject stale changes; exact-request replay returns the original committed result.",
+    "INV-06": "Frozen snapshot captures all cases/facts/evidence/decisions; renderer uses that payload only; later corrections/reviews never change old facts.",
+    "INV-07": "Incomplete/ambiguous/unsupported evidence remains explicit; a reviewer disposition or balanced supplied subtotal cannot prove complete real books.",
+    "INV-08": "Enforce10000 data rows/10MiB per source and bounded parsing/errors; source text inert; secrets/raw rows absent from logs.",
+    "INV-09": "Only observed command/test/benchmark/recovery outcomes count as evidence; synthetic local scope never implies hosted/real-data acceptance."
+  },
+  "topological_merge_order": [
+    "TASK-01",
+    "TASK-02",
+    "TASK-04",
+    "TASK-03",
+    "TASK-06",
+    "TASK-07",
+    "TASK-08",
+    "TASK-05",
+    "TASK-09",
+    "INT-01",
+    "TASK-11",
+    "INT-02",
+    "TASK-10",
+    "INT-03",
+    "TASK-12",
+    "RELEASE-GATE"
+  ]
+}
