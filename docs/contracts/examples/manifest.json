@@ -1,0 +1,12 @@
+{
+  "schema_version": "equivra.bundle.v1",
+  "workspace_id": "demo",
+  "source_account_id": "acct_demo",
+  "currency": "usd",
+  "period": {"start": "2026-09-01", "end_exclusive": "2026-10-01"},
+  "coverage": {
+    "stripe": {"start": "2026-09-01", "end_exclusive": "2026-10-02"},
+    "bank": {"start": "2026-09-01", "end_exclusive": "2026-10-02"},
+    "books": {"start": "2026-09-01", "end_exclusive": "2026-10-02"}
+  }
+}

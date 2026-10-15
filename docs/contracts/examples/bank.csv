@@ -1,0 +1,2 @@
+bank_row_id,posted_on,currency,amount,payout_ref,description
+bank_demo_01,2026-10-01,usd,66.80,po_demo_01,Synthetic payout deposit

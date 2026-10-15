@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "round": 2,
+  "document": "/Users/mac/Documents/Projects/Equivra/docs/designs/equivra-payments-workbench.md",
+  "quality_score": 9,
+  "dimensions": {
+    "completeness": "PASS",
+    "consistency": "PASS",
+    "clarity": "PASS",
+    "scope": "PASS",
+    "feasibility": "PASS"
+  },
+  "findings": [],
+  "prior": [
+    {
+      "id": "R1-1",
+      "status": "resolved",
+      "evidence": "Demonstration boundary makes accounting a required evidence source. The scenario set adds a processor refund missing from supplied accounting entries, and success criterion 8 requires all three sources plus an accounting-side discrepancy and distinguishes missing export evidence from a proven missing book entry.",
+      "current_id": null
+    },
+    {
+      "id": "R1-2",
+      "status": "resolved",
+      "evidence": "The core journey adds Freeze reviewed workpaper. Proposed approval boundary explicitly separates saving a disposition from freezing, fixes the immutable source/run/rule/review snapshot, retains unresolved labels, requires a new reviewable version and freeze after changes, and rejects stale freeze requests. Report states and success criterion 9 repeat this behavior.",
+      "current_id": null
+    }
+  ]
+}
