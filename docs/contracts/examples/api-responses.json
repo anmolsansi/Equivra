@@ -1,0 +1,140 @@
+{
+  "synthetic": true,
+  "status": "wire-shape examples, not runtime results",
+  "bundle_accepted": {
+    "data": {
+      "bundle_id": "00000000-0000-4000-8000-000000000001",
+      "run_id": "00000000-0000-4000-8000-000000000002",
+      "state": "queued",
+      "reused": false
+    }
+  },
+  "case_read": {
+    "data": {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "run_id": "00000000-0000-4000-8000-000000000002",
+      "case_key": "event:bt_demo_refund:books",
+      "kind": "book_relation",
+      "evidence_state": "incomplete",
+      "facts": {
+        "currency": "usd",
+        "expected_minor": "-3000",
+        "observed_minor": null,
+        "delta_minor": null,
+        "reason_code": "MISSING_BOOK_EVIDENCE",
+        "references": {
+          "balance_transaction_id": "bt_demo_refund",
+          "charge_id": "ch_demo_01"
+        }
+      },
+      "evidence": [
+        {
+          "source_kind": "stripe",
+          "row_no": 2,
+          "source_sha256": "daf49e62534e4c4bbeb481e8cfdc0bddd81b42e83fddfb99bca4946acdad6422"
+        }
+      ],
+      "case_version": 0,
+      "evidence_rows": [
+        {
+          "source_kind": "stripe",
+          "row_no": 2,
+          "source_sha256": "daf49e62534e4c4bbeb481e8cfdc0bddd81b42e83fddfb99bca4946acdad6422",
+          "raw_fields": {
+            "balance_transaction_id": "bt_demo_refund",
+            "created_utc": "2026-09-28T12:00:00Z",
+            "available_on_utc": "2026-09-29T00:00:00Z",
+            "currency": "usd",
+            "gross": "-30.00",
+            "fee": "0.00",
+            "net": "-30.00",
+            "reporting_category": "refund",
+            "automatic_payout_id": "po_demo_01",
+            "automatic_payout_effective_at_utc": "2026-09-30T00:00:00Z",
+            "source_id": "re_demo_01",
+            "charge_id": "ch_demo_01"
+          },
+          "normalized": {
+            "balance_transaction_id": "bt_demo_refund",
+            "created_utc": "2026-09-28T12:00:00Z",
+            "available_on_utc": "2026-09-29T00:00:00Z",
+            "currency": "usd",
+            "gross_minor": "-3000",
+            "fee_minor": "0",
+            "net_minor": "-3000",
+            "reporting_category": "refund",
+            "automatic_payout_id": "po_demo_01",
+            "automatic_payout_effective_at_utc": "2026-09-30T00:00:00Z",
+            "source_id": "re_demo_01",
+            "charge_id": "ch_demo_01"
+          }
+        }
+      ],
+      "latest_decision": null
+    }
+  },
+  "case_page": {
+    "data": {
+      "items": [
+        {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "run_id": "00000000-0000-4000-8000-000000000002",
+          "case_key": "event:bt_demo_refund:books",
+          "kind": "book_relation",
+          "evidence_state": "incomplete",
+          "facts": {
+            "currency": "usd",
+            "expected_minor": "-3000",
+            "observed_minor": null,
+            "delta_minor": null,
+            "reason_code": "MISSING_BOOK_EVIDENCE",
+            "references": {
+              "balance_transaction_id": "bt_demo_refund",
+              "charge_id": "ch_demo_01"
+            }
+          },
+          "evidence": [
+            {
+              "source_kind": "stripe",
+              "row_no": 2,
+              "source_sha256": "daf49e62534e4c4bbeb481e8cfdc0bddd81b42e83fddfb99bca4946acdad6422"
+            }
+          ],
+          "case_version": 0
+        }
+      ],
+      "next_cursor": null,
+      "review_version": 0
+    }
+  },
+  "decision_saved": {
+    "data": {
+      "decision_id": "00000000-0000-4000-8000-000000000004",
+      "case_version": 1,
+      "run_id": "00000000-0000-4000-8000-000000000002",
+      "review_version": 1
+    }
+  },
+  "snapshot_created": {
+    "data": {
+      "snapshot_id": "00000000-0000-4000-8000-000000000005",
+      "run_id": "00000000-0000-4000-8000-000000000002",
+      "review_version": 1,
+      "payload_sha256": "ba904b6ea0e96e269fe72137842d54e5db6572259d0eea7a7aea2038ccdd24c7"
+    }
+  },
+  "conflict": {
+    "error": {
+      "code": "STALE_VERSION",
+      "message": "Evidence or review changed; reload before submitting.",
+      "correlation_id": "00000000-0000-4000-8000-000000000006"
+    }
+  },
+  "invalid_access": {
+    "error": {
+      "code": "INVALID_ACCESS",
+      "message": "Enter the current local startup code.",
+      "correlation_id": "00000000-0000-4000-8000-000000000007"
+    }
+  }
+}

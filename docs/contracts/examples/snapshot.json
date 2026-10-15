@@ -1,0 +1,99 @@
+{
+  "synthetic": true,
+  "illustration_only": true,
+  "data": {
+    "id": "00000000-0000-4000-8000-000000000005",
+    "run_id": "00000000-0000-4000-8000-000000000002",
+    "review_version": 1,
+    "payload_sha256": "ba904b6ea0e96e269fe72137842d54e5db6572259d0eea7a7aea2038ccdd24c7",
+    "payload": {
+      "schema_version": "equivra.snapshot.v1",
+      "run_id": "00000000-0000-4000-8000-000000000002",
+      "bundle_id": "00000000-0000-4000-8000-000000000001",
+      "rule_version": "equivra.rules.v1",
+      "review_version": 1,
+      "manifest": {
+        "schema_version": "equivra.bundle.v1",
+        "workspace_id": "demo",
+        "source_account_id": "acct_demo",
+        "currency": "usd",
+        "period": {
+          "start": "2026-09-01",
+          "end_exclusive": "2026-10-01"
+        },
+        "coverage": {
+          "stripe": {
+            "start": "2026-09-01",
+            "end_exclusive": "2026-10-02"
+          },
+          "bank": {
+            "start": "2026-09-01",
+            "end_exclusive": "2026-10-02"
+          },
+          "books": {
+            "start": "2026-09-01",
+            "end_exclusive": "2026-10-02"
+          }
+        }
+      },
+      "source_hashes": {
+        "stripe": "daf49e62534e4c4bbeb481e8cfdc0bddd81b42e83fddfb99bca4946acdad6422",
+        "bank": "723342c22247f6111bf2a00d3d14e79ce09b9fe83a9dcd1a9f956243ff832ba5",
+        "books": "8d146cc5e290bbfd617ef7e17727792925f5db960f7746fcc3c02a3d45ccecfb"
+      },
+      "cases": [
+        {
+          "id": "00000000-0000-4000-8000-000000000003",
+          "run_id": "00000000-0000-4000-8000-000000000002",
+          "case_key": "event:bt_demo_refund:books",
+          "kind": "book_relation",
+          "evidence_state": "incomplete",
+          "facts": {
+            "currency": "usd",
+            "expected_minor": "-3000",
+            "observed_minor": null,
+            "delta_minor": null,
+            "reason_code": "MISSING_BOOK_EVIDENCE",
+            "references": {
+              "balance_transaction_id": "bt_demo_refund",
+              "charge_id": "ch_demo_01"
+            }
+          },
+          "evidence": [
+            {
+              "source_kind": "stripe",
+              "row_no": 2,
+              "source_sha256": "daf49e62534e4c4bbeb481e8cfdc0bddd81b42e83fddfb99bca4946acdad6422"
+            }
+          ],
+          "case_version": 1,
+          "latest_decision": {
+            "id": "00000000-0000-4000-8000-000000000004",
+            "version": 1,
+            "disposition": "needs_evidence",
+            "note": "Request refund entry evidence from the supplied books export.",
+            "created_at": "2026-10-14T12:00:00Z"
+          }
+        }
+      ],
+      "summary": {
+        "cases_total": 1,
+        "supported": 0,
+        "incomplete": 1,
+        "ambiguous": 0,
+        "unsupported": 0
+      },
+      "coverage": {
+        "basis": "supplied_scope_only",
+        "observed_rows": {
+          "stripe": 2,
+          "bank": 1,
+          "books": 1
+        },
+        "warnings": [
+          "MISSING_BOOK_EVIDENCE"
+        ]
+      }
+    }
+  }
+}

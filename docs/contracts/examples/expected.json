@@ -1,0 +1,20 @@
+{
+  "synthetic": true,
+  "rule_version": "equivra.rules.v1",
+  "observed_rows": {"stripe": 2, "bank": 1, "books": 1},
+  "payout_subtotal_minor": "6680",
+  "bank_relation": "supported_in_supplied_scope",
+  "charge_book_relation": "supported_in_supplied_scope",
+  "refund_book_relation": "incomplete",
+  "refund_expected_minor": "-3000",
+  "refund_observed_minor": null,
+  "refund_delta_minor": null,
+  "scope_basis": "supplied_scope_only",
+  "bank_posting_crosses_period": true,
+  "after_complete_bundle_with_corrected_books": {
+    "refund_observed_minor": "-3000",
+    "refund_delta_minor": "0",
+    "refund_book_relation": "supported_in_supplied_scope",
+    "prior_snapshot_facts_unchanged": true
+  }
+}
