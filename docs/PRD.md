@@ -110,7 +110,7 @@ Local access validation; complete-bundle upload and preview; revision/run status
 - Access prompt: labeled code entry, invalid-access feedback, restart/reconnect behavior; no data before access.
 - Bundle screen: three required sources, explicit formats/limits/scope, validation progress and source/row errors.
 - Run/case screen: persistent job state, bounded paging, zero-case coverage explanation, visible incomplete/ambiguous states and failures.
-- Evidence/review screen: source references, exact amount/currency/date distinctions, escaped text, retained draft note on conflict, saved version feedback.
+- Evidence/review screen: deterministic reason-code explanation and next evidence check per C-API, source references, exact amount/currency/date distinctions, escaped text, retained draft note on conflict, saved version feedback.
 - Workpaper screen: draft versus frozen state, selected version, unresolved labels, stale-freeze feedback and recoverable export failure.
 
 Desktop-first with stacked narrow-screen panels, semantic forms/tables, keyboard/focus behavior, non-color-only status, readable long values and accessible status/error announcements. The rough sketch is a workflow reference, not a finished design system.

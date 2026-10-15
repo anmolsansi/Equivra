@@ -213,3 +213,7 @@ Stop: PASS
 
 No unresolved findings.
 <!-- gstack:office-hours:concerns:end -->
+
+## Approved evidence guidance refinement — 2026-10-15
+
+Case detail adds deterministic “What this evidence shows” and “Next evidence check” copy from the C-API reason-code table in architecture section 5. Keep source links, unknown values and reviewer disposition distinct. No AI, automatic correction or change to frozen report contents. TASK-10 / T44 implements and tests the copy; T46 / INT-03 verifies S1 against real providers. Revision comparison remains outside this addition.
